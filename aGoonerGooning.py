@@ -7,8 +7,16 @@ inventory = []
 
 
 #Enemy stats
-enemy_health = 100
+enemy_health = 80
 
+#Rest mechanic
+def rest(current_health, healing_amount):
+    new_health = current_health + healing_amount
+    if new_health > 100:
+        new_health = 100
+    return new_health
+
+    
 
 print("\nWelcome to your new grand adventure!")
 print("What is your next move?\n")
@@ -76,7 +84,7 @@ if choice == "explore":
 
 elif choice == "rest":
     print("\nYou sleep nice like a good little boy")
-    player_health += 20
+    player_health = rest(player_health, 20)
     print(f"Your health is now {player_health}.\n")
 
 else:
