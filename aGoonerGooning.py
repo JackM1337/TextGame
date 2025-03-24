@@ -2,7 +2,7 @@ import random
 
 #Player stats
 player_health = 100
-
+player_hands = "Fistdacuffs"
 inventory = []
 
 
@@ -16,14 +16,34 @@ def rest(current_health, healing_amount):
         new_health = 100
     return new_health
 
-    
+#Equip mechanic
+def equip_weapon(player_hands, new_weapon):
+    if player_hands !="": #check for equipped weapon
+        #prompt the player what to do next
+        equip_weapon_item = input(f"You currently have {player_hands} equipped. Do you want to equip a new weapon or rock with what you've got? (Type 'Equip a new weapon' or 'Rock with them'): ").strip().lower()
+
+        if equip_weapon_item == "equip a new weapon":
+            player_hands = new_weapon #equip the new weapon
+            print(f"You have equipped the {new_weapon}.")
+        elif equip_weapon_item == "rock with them":
+            print(f"You're rocking the {player_hands}")
+        else:
+            print("That's not a choice dude, type in 'Equip a new weapon' or 'Rock with them'.")
+    else:
+        #if no weapon is equipped, simply equip the new one
+        player_hands = new_weapon
+        print("You equipped the new weapon!")
+
+
+    return player_hands #Return the updated weapon
+        
 
 print("\nWelcome to your new grand adventure!")
 print("What is your next move?\n")
 
-choice = input("Do you want to explore or rest?").strip().lower()
+game = input("Do you want to explore or rest?").strip().lower()
 
-if choice == "explore":
+if game == "explore":
     print("\nYou wander into a clearing and encounter an enemy!\n")
 
     while enemy_health > 0 and player_health > 0:
@@ -82,7 +102,7 @@ if choice == "explore":
             print("Did I say that's a choice? Attack or run dude, cmon\n")
 
 
-elif choice == "rest":
+elif game == "rest":
     print("\nYou sleep nice like a good little boy")
     player_health = rest(player_health, 20)
     print(f"Your health is now {player_health}.\n")
