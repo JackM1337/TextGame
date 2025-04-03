@@ -3,7 +3,51 @@ import random
 #Player stats
 player_health = 100
 player_hands = "Fistdacuffs"
+
+#Inventory system
 inventory = []
+
+def add_item(item):
+    inventory.append(item)
+    print(f"{item} has been added to your inventory.")
+
+def remove_item(item):
+    if item in inventory:
+        inventory.remove(item)
+        print(f"{item} has been removed from your inventory.")
+    else:
+        print(f"{item} is not in your inventory.")
+
+def view_inventory():
+    if inventory:
+        print("Your inventory contains:")
+        for item in inventory:
+            print(f"- {item}")
+        else:
+            print("your inventory is empty.")
+
+while True:
+    print("\nInventory Menu:")
+    print("1. Add Item")
+    print("2. Remove Item")
+    print("3. View Inventory")
+    print("4. Quit")
+
+    choice = input("Choose an option: ")
+
+    if choice == "1":
+        item = input("Enter item to add: ")
+        add_item(item)
+    elif choice == "2":
+        item = input("Enter the item to remove: ")
+        remove_item(item)
+    elif choice == "3":
+        view_inventory()
+    elif choice == "4":
+        print("Exiting the inventory menu")
+        break
+    else:
+        print("Invalid choice. Please enter a number between 1 and 4")
 
 
 #Enemy stats
